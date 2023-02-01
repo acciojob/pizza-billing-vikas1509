@@ -5,80 +5,106 @@ import com.sun.source.tree.ReturnTree;
 public class Pizza {
 
     private int price;
+    private int cheesprice;
+    private int takeAway;
+    private int topingPrice;
     private Boolean isVeg;
     private String bill;
-    private boolean took =false;
+     private boolean exctraChees;
+
+    private boolean addTakeAway ;
+    private boolean addexctraToping ;
+    private boolean addExctraChees;
+    private boolean isBillGeneration;
   //  public  int price1 =0;
     public boolean added = false;
 
     public Pizza(Boolean isVeg){
-        this.isVeg = isVeg;
+
         // your code goes here
-        if(this.isVeg){
+        this.isVeg=isVeg;
+        this.cheesprice=80;
+        this.takeAway=20;
+        if(this.isVeg=true){
             this.price=300;
+            this.topingPrice=20;
+        }
+        if(isVeg==true){
+            this.price=300;
+            this.topingPrice=70;
         }
         else{
             this.price=400;
+            this.topingPrice=120;
         }
+        this.addExctraChees=false;
+        this.addTakeAway=false;
+        this.addexctraToping=false;
+        this.isBillGeneration=false;
+        this.bill="Base price of the pizza: "+ this.price+"\n";
+
 
     }
 
     public int getPrice(){
 
        // return this.price;
-        if(isVeg==true){
-
-            this.price=300;
-            return this.price;
-        }
-        else{
-
-            this.price=400;
-            return this.price;
-        }
+     return this.price;
 
     }
 
     public void addExtraCheese(){
         // your code goes here
 
-        if(added==false){
-            System.out.println("Extra Cheese Added: "+80);
-          this.price+=80;
-            added=true;
+        if(addExctraChees==false){
+           this.price+=this.cheesprice;
+
+      addExctraChees=true;
+
         }
-        else{
-          this.price=this.price;
-        }
+
 
     }
 
     public void addExtraToppings(){
         // your code goes here
-        if(isVeg){
-            System.out.println("Extra Toppings Added: "+70);
+        if(addexctraToping==false){
+           this.price+=this.topingPrice;
+           addexctraToping=true;
 
-            this.price+=70;
-        }
-        else{
-            System.out.println("Extra Toppings Added: " +120);
 
-            this.price+=120;
+
         }
+
     }
 
     public void addTakeaway() {
         // your code goes here
-        if (took == false) {
-            System.out.println("Paperbag Added: "+20);
-            this.price += 20;
-            took = true;
+        if (addTakeAway == false) {
+
+            this.price +=this.takeAway;
+            addTakeAway =true;
+
         }
     }
 
     public String getBill(){
         // your code goes here
-this.bill = Integer.toString(this.price);
-        return bill;
+if(isBillGeneration==false){
+    if(addExctraChees==true){
+        this.bill+="Exctra Chees Added: "+this.cheesprice+"\n";
+
+    }
+    if(addexctraToping==true){
+        this.bill+="Exctra Toping Added: "+this.topingPrice+ "\n";
+    }
+    if(addTakeAway==true) {
+        this.bill += "Paperbag Added: " + this.takeAway + "\n";
+    }
+    this.bill+="Total price: "+this.price+"\n";
+    isBillGeneration=true;
+
+}
+return this.bill;
     }
 }
